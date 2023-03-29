@@ -18,44 +18,43 @@ public class Fichariofi {
 		int pos;
 		System.out.println("Qual funcionário deseja incluir esse filho?");
 		pos = Integer.parseInt(sc.nextLine());
-		if(vet[pos] == null) {
+		if (vet[pos] == null) {
 			System.out.println("Funcionário não existe, digite outro");
-		} 
-		else {
-		while (cont < vet[pos].getFilhos().length && vet[pos].getFilhos()[cont] != null) {
-			cont++;
-		}
-		;
-		
-		if (cont < vet.length) {
-
-			Filho f = new Filho();
-			System.out.println("Cadastrando filho");
-			System.out.println("Digite o numero de CPF");
-			f.setCpf(sc.nextLine());
-			System.out.println("Digite o Nome");
-			f.setNome(sc.nextLine());
-			System.out.println("Digite o numero da certidão de nascimento");
-			f.setNumCertNasc(sc.nextLine());
-			System.out.println("Digite a data de nascimento");
-			f.setDataNascimento(sc.nextLine());
+		} else {
+			while (cont < vet[pos].getFilhos().length && vet[pos].getFilhos()[cont] != null) {
+				cont++;
+			}
 			;
 
-			vet[pos].getFilhos()[cont] = f;
-		
-		} else
-			System.out.println("Memória cheia");
+			if (cont < vet.length) {
+
+				Filho f = new Filho();
+				System.out.println("Cadastrando filho");
+				System.out.println("Digite o numero de CPF");
+				f.setCpf(sc.nextLine());
+				System.out.println("Digite o Nome");
+				f.setNome(sc.nextLine());
+				System.out.println("Digite o numero da certidão de nascimento");
+				f.setNumCertNasc(sc.nextLine());
+				System.out.println("Digite a data de nascimento");
+				f.setDataNascimento(sc.nextLine());
+				;
+
+				vet[pos].getFilhos()[cont] = f;
+
+			} else
+				System.out.println("Memória cheia");
+		}
 	}
-	}
-	
-	public boolean verifica(int pos, Funcionario vet[]) {
+
+	public boolean verifica(int posfilho,int pos, Funcionario vet[]) {
 		int rr = 0;
 
-		if (pos < vet[pos].getFilhos().length || pos >= vet[pos].getFilhos().length) {
+		if (posfilho < 0 || posfilho >= vet[pos].getFilhos().length) {
 			System.out.println("Posição inválida, digite outra");
 			rr++;
 
-		} else if (vet[pos].getFilhos() == null) {
+		} else if (vet[pos].getFilhos()[posfilho] == null) {
 			System.out.println("Não existe filho na posição informada");
 			rr++;
 		}
@@ -72,12 +71,11 @@ public class Fichariofi {
 		pos = Integer.parseInt(sc.nextLine());
 		System.out.println("Digite a posição do filho que deseja alterar");
 		posfilho = Integer.parseInt(sc.nextLine());
-		if (verifica(pos, vet)) {
+		if (verifica(posfilho, pos, vet)) {
 
 			System.out.println("Alterando filho :");
 			System.out.println("Digite o nome do filho :");
 			vet[pos].getFilhos()[posfilho].setNome(sc.nextLine());
-			;
 			System.out.println("Digite a data de nascimento do filho :");
 			vet[pos].getFilhos()[posfilho].setDataNascimento(sc.nextLine());
 			System.out.println("Digite o CPF do filho :");
@@ -96,7 +94,7 @@ public class Fichariofi {
 		pos = Integer.parseInt(sc.nextLine());
 		System.out.println("Digite a posição do filho que deseja excluir");
 		posfilho = Integer.parseInt(sc.nextLine());
-		if (verifica(pos, vet)) {
+		if (verifica(posfilho, pos, vet)) {
 			vet[pos].getFilhos()[posfilho] = null;
 		}
 
